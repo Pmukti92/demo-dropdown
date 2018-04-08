@@ -1,0 +1,44 @@
+<html ng-app='app'>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src='main.js'></script>
+
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div ng-controller="HomeController">
+
+        <div class="col-xs-12 main-wrapper no-padding">
+            Select option
+            <div class="col-xs-12 no-padding">   
+                    <input class="col-xs-2 input1" type="text" ng-click="showDropdown = !showDropdown" ng-model='selectedPersonString' placeholder="Select Person">
+            </div>
+            <div class="col-xs-2 dropdown no-padding" ng-if="showDropdown">
+                <div class="col-xs-12 search-box no-padding">
+                    <input class="search" type="text" ng-model="searchItem" placeholder="Search Person">
+                </div>
+                <div class="options">
+                    <div ng-repeat="person in dataArray | filter:searchItem " class="col-xs-12 persons" ng-click="personArrayHandler(person)"
+                    ng-class="{'selected': person.status === 'selected'}">
+                        <div class='col-xs-2'>
+                            <div class="green_dot" ng-if="person.status === 'selected'"></div>
+                            <div class="gray_dot" ng-if="person.status === 'notSelected'"></div>
+                        </div>
+                        <div class='col-xs-10'>{{person.name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</body>
+
+</html>
